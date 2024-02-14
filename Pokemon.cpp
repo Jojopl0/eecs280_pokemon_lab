@@ -121,8 +121,4 @@ bool Pokemon_battle(const Pokemon &a, const Pokemon &b) {
   }
 
 
-
-
-
-
 }
