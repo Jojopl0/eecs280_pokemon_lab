@@ -101,7 +101,8 @@ int main(int argc, char *argv[]) {
   string player_in_name = argv[1];
   string gym_leaders_in_name = argv[2];
 
-  ifstream player_in(player_in_name);
+  ifstream player_in;
+  player_in.open(player_in_name);
   if ( !player_in.is_open() ) {
     cout << "Unable to open " << player_in_name << endl;
     return 1;
