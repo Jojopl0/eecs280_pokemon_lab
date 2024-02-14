@@ -10,15 +10,19 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-
+  //makes sure correct number of input files - main
   if (argc != 3) {
     cout << "Usage: battle.exe PLAYER_FILE GYM_LEADERS_FILE" << endl;
     return 1;
   }
 
+
+  //assigns files names to strings - main probably
   std::string player_in_name = argv[1];
   std::string gym_leaders_in_name = argv[2];
 
+  //read in files, error if cannot open
+  //still in main
   std::ifstream player_in(player_in_name);
   if ( !player_in.is_open() ) {
     cout << "Unable to open " << player_in_name << endl;
@@ -29,23 +33,38 @@ int main(int argc, char *argv[]) {
     cout << "Unable to open " << gym_leaders_in_name << endl;
     return 1;
   }
-  
+
+
+  //creates a player pointer to a new player - main?
   Trainer *player = Trainer_factory(player_in);
 
+//creates vector of gymleader trainers - probably private in league
   vector<Trainer*> gym_leaders;
 
+
+
+  //in private league
   int num_gym_leaders;
+  //needed when reading in the names of the leaders, so probably in private league as well
   string ignore;
+
+  //incorporate into the initialization of leader vector
   gym_in >> num_gym_leaders;
   gym_in >> ignore; // read in the word "leaders"
 
+
+
+//adds each gym leader to the gym leader vector - private as well, maybe needs function
   for(int i = 0; i < num_gym_leaders; ++i) {
     gym_leaders.push_back(Trainer_factory(gym_in));
   }
 
+
+//defeated vector of trainers - idk where this goes prolly league
   vector<Trainer*> defeated;
 
   // Face up against each gym leader
+  //assuming needs a function call for this? - so in league
   for(int i = 0; i < gym_leaders.size(); ++i) {
     player->reset();
     Trainer *current_gym_leader = gym_leaders[i];
@@ -84,6 +103,9 @@ int main(int argc, char *argv[]) {
     cout << endl;
   }
 
+
+
+//another function for defeats, so after each league leader is defeated, call this function
   cout << *player << " won " << defeated.size() << " matches by defeating:" << endl;
   for(int i = 0; i < defeated.size(); ++i) {
     cout << *defeated[i] << endl;
@@ -91,6 +113,7 @@ int main(int argc, char *argv[]) {
 
   
   // Clean up by deleting all Trainer objects
+  //this should be at the bottom of league
   delete player;
   for(size_t i = 0; i < gym_leaders.size(); ++i) {
     delete gym_leaders[i];
