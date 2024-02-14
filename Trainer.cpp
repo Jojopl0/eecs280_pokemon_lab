@@ -64,7 +64,7 @@ Pokemon Trainer::choose_pokemon(PokemonType adversary_type) {
     currPokemon = active_roster[i];
     if (currPokemon.is_effective_against(adversary_type)) {
       outPokemon = currPokemon;
-      active_roster.erase(active_roster.active_roster.begin() + i);
+      active_roster.erase(active_roster.begin() + i);
       return outPokemon;
     }
     if (i == (active_roster.size() - 1)) {
