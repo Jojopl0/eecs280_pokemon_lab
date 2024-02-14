@@ -36,7 +36,7 @@ public:
 int main(int argc, char *argv[]) {
 
   // TODO: Add code to read command line args and open file streams here
-  
+  argv[1] = 
 
 
   // TODO: Create a League object, call function to run the simulation
